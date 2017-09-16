@@ -1,24 +1,32 @@
-const htmlStandards = require('reshape-standard')
-const cssStandards = require('spike-css-standards')
-const jsStandards = require('spike-js-standards')
-const pageId = require('spike-page-id')
-const sugarml = require('sugarml')
-const sugarss = require('sugarss')
-const env = process.env.SPIKE_ENV
+const htmlStandards = require('reshape-standard');
+const cssStandards = require('spike-css-standards');
+const jsStandards = require('spike-js-standards');
+const pageId = require('spike-page-id');
+const sugarml = require('sugarml');
+const sugarss = require('sugarss');
+const { ProvidePlugin } = require('webpack'); // eslint-disable-line
+
+const env = process.env.SPIKE_ENV;
 
 module.exports = {
   devtool: 'source-map',
   matchers: { html: '*(**/)*.sgr', css: '*(**/)*.sss' },
-  ignore: ['**/layout.sgr', '**/_*', '**/.*', 'readme.md', 'yarn.lock'],
+  ignore: ['**/layout.sgr', '**/_*', '**/.*', 'readme.md', 'yarn.lock', 'package-lock.json', 'LICENSE.md', 'install-eslint-config-airbnb'],
+  dumpDirs: ['www', 'assets', 'views', 'favicons'],
   reshape: htmlStandards({
     parser: sugarml,
-    locals: (ctx) => { return { pageId: pageId(ctx) } },
-    minify: env === 'production'
+    locals: ctx => ({ pageId: pageId(ctx) }),
+    minify: env === 'production',
   }),
+  plugins: [
+    new ProvidePlugin({
+      THREE: 'three/build/three',
+    }),
+  ],
   postcss: cssStandards({
     parser: sugarss,
     minify: env === 'production',
-    warnForDuplicates: env !== 'production'
+    warnForDuplicates: env !== 'production',
   }),
-  babel: jsStandards()
-}
+  babel: jsStandards(),
+};

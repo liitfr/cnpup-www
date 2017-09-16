@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "globals": {
+    "THREE": true
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "app.js"
+      }
+    }
+  }
+}

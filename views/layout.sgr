@@ -1,20 +1,31 @@
 doctype html
-html
+html.no-js(lang="fr")
   head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible' content='IE=edge')
-    meta(name='description' content='')
-    meta(name='author' content='liitfr')
-    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="description" content="La Trahison des images")
+    meta(name="author" content="liitfr")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
 
-    block(name='title')
-      title Title of Your Site
+    block(name="title")
+      title Ceci n'est pas une pipe
 
-    link(rel='stylesheet' href='css/index.css')
+    script.
+      (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
+    link(rel="stylesheet" href="css/style.css")
 
-  body
-    main(role='main' id='{{ pageId }}')
-      block(name='content')
+    meta(name="robots" content="index, follow")
+    meta(name="author" content="liit.fr")
+    link(rel="author" href="/humans.txt")
+    meta(name="copyright" content="Tous droits réservés - LIIT")
 
-    block(name='javascript')
-      script(src='js/main.js' defer)
+  body(role="document" id="{{ pageId }}")
+    main(role="main")
+      block(name="content")
+
+    block(name="javascript")
+      script(src="js/main.js" defer)
+      script.
+        window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+        ga('create','UA-89600001-3','auto');ga('send','pageview');
+      script(src="https://www.google-analytics.com/analytics.js" async defer)

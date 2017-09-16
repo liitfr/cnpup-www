@@ -1,6 +1,6 @@
 {
   "name": "cnpup-www",
-  "description": "Ceci n&#39;est pas une pipe",
+  "description": "Ceci n'est pas une pipe",
   "version": "0.0.1",
   "author": "liitfr",
   "ava": {
@@ -9,16 +9,23 @@
   "bugs": "https://github.com/liitfr/cnpup-www/issues",
   "dependencies": {
     "reshape-standard": "^3.0.0",
+    "spike": "^2.0.0",
     "spike-css-standards": "^3.0.0",
     "spike-js-standards": "^2.0.2",
     "spike-optimize": "^0.1.2",
     "spike-page-id": "^1.0.0",
-    "spike": "^2.0.0",
     "sugarml": "^0.6.0",
-    "sugarss": "^1.0.0"
+    "sugarss": "^1.0.0",
+    "three": "^0.87.1"
   },
   "devDependencies": {
     "ava": "^0.19.1",
+    "eslint": "^4.7.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
     "rimraf": "^2.6.1",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2"
@@ -28,7 +35,7 @@
   "private": true,
   "repository": "https://github.com/liitfr/cnpup-www",
   "scripts": {
-    "lint": "standard | snazzy",
+    "lint": "eslint --ignore-path .gitignore **/*.js",
     "precommit": "npm run lint -s",
     "pretest": "npm run lint -s",
     "test": "NODE_ENV=test ava",

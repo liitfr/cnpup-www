@@ -1,6 +1,8 @@
 # cnpup-www
 
-Ceci n&#39;est pas une pipe
+Ceci n'est pas une pipe.  
+
+Built with [Spike](https://www.spike.cf/) :cactus:
 
 ## Setup
 
@@ -11,6 +13,7 @@ Ceci n&#39;est pas une pipe
 - run `spike watch` or `spike compile`
 
 ## Testing
+
 Tests are located in `test/**` and are powered by [ava](https://github.com/sindresorhus/ava)
 - `npm install` to ensure devDeps are installed
 - `npm test` to run test suite
