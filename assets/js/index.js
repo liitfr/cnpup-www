@@ -28,7 +28,18 @@ function init() {
   container = document.createElement('div');
   document.getElementsByTagName('main')[0].appendChild(container);
   camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
-  camera.position.z = 20;
+  // make camera position responsive
+  if (window.innerWidth <= 488) {
+    camera.position.z = 40;
+  } else if (window.innerWidth <= 570) {
+    camera.position.z = 35;
+  } else if (window.innerWidth <= 668) {
+    camera.position.z = 30;
+  } else if (window.innerWidth <= 845) {
+    camera.position.z = 25;
+  } else {
+    camera.position.z = 20;
+  }
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xe6d6c6);
   const ambient = new THREE.AmbientLight(0x101030);
