@@ -40,6 +40,8 @@ function init() {
   } else {
     camera.position.z = 20;
   }
+  const listener = new THREE.AudioListener();
+  camera.add(listener);
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xe6d6c6);
   const ambient = new THREE.AmbientLight(0x101030);
@@ -73,6 +75,16 @@ function init() {
     });
     object.position.y = -2; // eslint-disable-line
     scene.add(object);
+    const audioLoader = new THREE.AudioLoader();
+    const sound = new THREE.PositionalAudio(listener);
+    audioLoader.load('/sounds/satie.ogg', (buffer) => {
+      sound.setBuffer(buffer);
+      sound.setRefDistance(15);
+      sound.setRolloffFactor(6);
+      sound.setDistanceModel('exponential');
+      sound.play();
+    });
+    object.add(sound);
   }, onProgress, onError);
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio(window.devicePixelRatio);
