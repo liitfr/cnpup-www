@@ -5,6 +5,7 @@ const pageId = require('spike-page-id');
 const sugarml = require('sugarml');
 const sugarss = require('sugarss');
 const { ProvidePlugin } = require('webpack'); // eslint-disable-line
+const path = require('path');
 
 const env = process.env.SPIKE_ENV;
 
@@ -23,6 +24,11 @@ module.exports = {
       THREE: 'three/build/three',
     }),
   ],
+  resolve: {
+    alias: {
+      OBJLoader: path.resolve(__dirname, 'node_modules/three/examples/js/loaders/OBJLoader.js'),
+    },
+  },
   postcss: cssStandards({
     parser: sugarss,
     minify: env === 'production',

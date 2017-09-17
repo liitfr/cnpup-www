@@ -1,5 +1,7 @@
 /* eslint no-console: ["error", { allow: ["warn", "error", "log"] }] */
 
+import OBJLoader from 'OBJLoader'; // eslint-disable-line
+
 let container;
 let camera;
 let scene;
@@ -24,10 +26,11 @@ function onDocumentMouseMove(event) {
 
 function init() {
   container = document.createElement('div');
-  document.body.appendChild(container);
+  document.getElementsByTagName('main')[0].appendChild(container);
   camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
-  camera.position.z = 250;
+  camera.position.z = 20;
   scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xe6d6c6);
   const ambient = new THREE.AmbientLight(0x101030);
   scene.add(ambient);
   const directionalLight = new THREE.DirectionalLight(0xffeedd);
@@ -46,18 +49,18 @@ function init() {
   };
   const onError = () => {};
   const imgLoader = new THREE.ImageLoader(manager);
-  imgLoader.load('textures/UV_Grid_Sm.jpg', (image) => {
+  imgLoader.load('/img/UV_Grid_Sm.jpg', (image) => {
     texture.image = image;
     texture.needsUpdate = true;
   });
   const objLoader = new THREE.OBJLoader(manager);
-  objLoader.load('obj/male02/male02.obj', (object) => {
+  objLoader.load('/obj/smokingpipe.obj', (object) => {
     object.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         child.material.map = texture; // eslint-disable-line
       }
     });
-    object.position.y = -95; // eslint-disable-line
+    object.position.y = -2; // eslint-disable-line
     scene.add(object);
   }, onProgress, onError);
   renderer = new THREE.WebGLRenderer();
@@ -69,8 +72,8 @@ function init() {
 }
 
 function render() {
-  camera.position.x += (mouseX - camera.position.x) * 0.05;
-  camera.position.y += (-mouseY - camera.position.y) * 0.05;
+  camera.position.x += (Math.max(Math.min(mouseX, 20), -20) - camera.position.x) * 0.008;
+  camera.position.y += (-Math.max(Math.min(mouseY, 20), -20) - camera.position.y) * 0.008;
   camera.lookAt(scene.position);
   renderer.render(scene, camera);
 }

@@ -1,0 +1,39 @@
+# Blender MTL File: 'None'
+# Material Count: 3
+
+newmtl Metal
+Ns 1000.000000
+Ka 0.027451 0.027451 0.027451
+Kd 1.000000 1.000000 1.000000
+Ks 0.900000 0.900000 0.900000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /home/mathias/Bureau/Smoking Pipe 4/Smoking Pipe 4_obj/Smoke_Pipe_Diffuse.png
+map_Bump /home/mathias/Bureau/Smoking Pipe 4/Smoking Pipe 4_obj/Smoke_Pipe_Bump.png
+
+newmtl Plastic
+Ns 62.745098
+Ka 0.500000 0.500000 0.500000
+Kd 1.000000 1.000000 1.000000
+Ks 0.900000 0.900000 0.900000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /home/mathias/Bureau/Smoking Pipe 4/Smoking Pipe 4_obj/Smoke_Pipe_Diffuse.png
+map_Bump /home/mathias/Bureau/Smoking Pipe 4/Smoking Pipe 4_obj/Smoke_Pipe_Bump.png
+
+newmtl Wood
+Ns 511.764706
+Ka 0.500000 0.500000 0.500000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /home/mathias/Bureau/Smoking Pipe 4/Smoking Pipe 4_obj/Smoke_Pipe_Diffuse.png
+map_Bump /home/mathias/Bureau/Smoking Pipe 4/Smoking Pipe 4_obj/Smoke_Pipe_Bump.png
+map_Ks /home/mathias/Bureau/Smoking Pipe 4/Smoking Pipe 4_obj/Smoke_Pipe_Glossy.png
