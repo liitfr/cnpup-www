@@ -1,16 +1,59 @@
+:root
+  --custom-main-color: #e6d6c6
+
 #index
+  font-family: system-ui
   margin: 0
   overflow: hidden
   height: 100%
   width: 100%
-  background: #e6d6c6
+  background: var(--custom-main-color)
 
-  & #legend
+  & header
+    & svg
+      width: 120px
+      position: absolute
+      top: 2rem
+      right: 2rem
+      display: none
+
+      @media screen and (max-width: 27em)
+        width: 80px
+
+      & .polylogo
+        fill: #000
+        opacity: 0
+
+      & #brand
+        fill: var(--custom-main-color)
+
+  & main
+    & #legend
+      position: absolute
+      bottom: 1rem
+      width: 100%
+      text-align: center
+
+      & svg
+        width: 800px
+        max-width: 90%
+
+  & #no-js-msg
+    display: none
     position: absolute
-    bottom: 1rem
     width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    background: var(--custom-main-color)
+    line-height: 100vh
     text-align: center
 
-    & svg
-      width: 800px
-      max-width: 90%
+.no-js
+  & header,
+  & main,
+  & footer
+    display: none !important
+
+  & #no-js-msg
+    display: block !important

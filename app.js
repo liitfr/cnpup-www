@@ -27,6 +27,8 @@ module.exports = {
   resolve: {
     alias: {
       OBJLoader: path.resolve(__dirname, 'node_modules/three/examples/js/loaders/OBJLoader.js'),
+      TweenLite: path.resolve(__dirname, 'node_modules/gsap/src/uncompressed/TweenLite.js'),
+      AttrPlugin: path.resolve(__dirname, 'node_modules/gsap/src/uncompressed/plugins/AttrPlugin.js'),
     },
   },
   postcss: cssStandards({

@@ -1,5 +1,6 @@
 {
-    "name": "CNPUP",
+    "short_name": "CNPUP",
+    "name": "Ceci n'est pas une pipe",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

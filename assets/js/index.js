@@ -1,6 +1,13 @@
 /* eslint no-console: ["error", { allow: ["warn", "error", "log"] }] */
+/* eslint no-param-reassign: ["error", { "props": false }] */
 
 import OBJLoader from 'OBJLoader'; // eslint-disable-line
+import TweenLite from 'TweenLite'; // eslint-disable-line
+import AttrPlugin from 'AttrPlugin'; // eslint-disable-line
+
+// -------------------------------------------------------------------------- //
+// 3d                                                                         //
+// -------------------------------------------------------------------------- //
 
 let container;
 let camera;
@@ -10,6 +17,10 @@ let mouseX = 0;
 let mouseY = 0;
 let windowHalfX = window.innerWidth / 2;
 let windowHalfY = window.innerHeight / 2;
+const logo = document.getElementsByTagName('svg')[0];
+const polylogo = document.getElementsByClassName('polylogo')[0];
+let logoIsDisplayed = false;
+let opacity = 0;
 
 function onWindowResize() {
   windowHalfX = window.innerWidth / 2;
@@ -70,7 +81,7 @@ function init() {
   objLoader.load('/obj/smokingpipe.obj', (object) => {
     object.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        child.material.map = texture; // eslint-disable-line
+        child.material.map = texture;
       }
     });
     object.position.y = -2; // eslint-disable-line
@@ -95,6 +106,19 @@ function init() {
 }
 
 function render() {
+  // calculate ratio between distance camera / center (which is (0, 0, 0))
+  // and max distance (sqrt(800))
+  // substract 0.25 to start displaying logo not immediately
+  opacity = Math.max((Math.sqrt((camera.position.x ** 2) +
+    (camera.position.y ** 2)) / 28.284271247) - 0.25, 0);
+  if (opacity > 0 && !logoIsDisplayed) {
+    logo.style.display = 'block';
+    logoIsDisplayed = true;
+  } else if (opacity === 0 && logoIsDisplayed) {
+    logo.style.display = 'none';
+    logoIsDisplayed = false;
+  }
+  polylogo.style.opacity = opacity;
   camera.position.x += (Math.max(Math.min(mouseX, 20), -20) - camera.position.x) * 0.008;
   camera.position.y += (-Math.max(Math.min(mouseY, 20), -20) - camera.position.y) * 0.008;
   camera.lookAt(scene.position);
@@ -108,3 +132,46 @@ function animate() {
 
 init();
 animate();
+
+// -------------------------------------------------------------------------- //
+// Logo                                                                       //
+// -------------------------------------------------------------------------- //
+
+const updateInterval = 1.351;
+const logoSize = 200;
+const radius = 100;
+
+// because of SVGO when it minifies ...
+document.querySelectorAll('.a-inside-svg').forEach((a) => {
+  a.href = a.getAttribute('data-href'); // eslint-disable-line
+});
+
+function generatePoint(index, logoSides) {
+  const logoRadius = radius;
+  const minRadius = radius * 0.9;
+  const x = 0;
+  const y = Math.ceil(minRadius + (Math.random() * (logoRadius - minRadius)));
+  const angle = ((Math.PI * 2) / logoSides) * index;
+  const cos = Math.cos(angle);
+  const sin = Math.sin(angle);
+  const tx = Math.floor(((x * cos) - (y * sin)) + (logoSize / 2));
+  const ty = Math.floor((x * sin) + (y * cos) + (logoSize / 2));
+  return { x: tx, y: ty };
+}
+
+function generate(mask, logoSides) {
+  const path = (`M ${Array(...{ length: logoSides }).map((obj, index) => {
+    const point = generatePoint(logoSides - index, logoSides);
+    return `${point.x} ${point.y}`;
+  }).join(' L ')} Z`);
+  return path;
+}
+
+function flickLogo() {
+  TweenLite.to('.polylogo', updateInterval, { attr: { d: generate(false, 40) }, onComplete: flickLogo });
+}
+
+if (document.getElementsByClassName('polylogo').length > 0) {
+  document.querySelector('.polylogo').setAttribute('d', generate(false, 40));
+  flickLogo();
+}
