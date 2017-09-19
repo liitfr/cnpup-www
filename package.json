@@ -31,6 +31,15 @@
     "snazzy": "^7.0.0",
     "standard": "^10.0.2"
   },
+  "greenkeeper": {
+    "ignore": [
+      "eslint",
+      "eslint-config-airbnb",
+      "eslint-plugin-import",
+      "eslint-plugin-jsx-a11y",
+      "eslint-plugin-react"
+    ]
+  },
   "homepage": "https://github.com/liitfr/cnpup-www",
   "main": "app.js",
   "private": true,

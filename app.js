@@ -17,7 +17,7 @@ module.exports = {
   reshape: htmlStandards({
     parser: sugarml,
     locals: ctx => ({ pageId: pageId(ctx) }),
-    minify: env === 'production',
+    minify: env === 'production' ? { minifySvg: false } : false,
   }),
   plugins: [
     new ProvidePlugin({
