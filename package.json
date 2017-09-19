@@ -1,7 +1,7 @@
 {
   "name": "cnpup-www",
   "description": "Ceci n'est pas une pipe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "liitfr",
   "ava": {
     "verbose": "true"
