@@ -11,7 +11,7 @@
     "gsap": "^1.20.2",
     "reshape-standard": "^3.0.0",
     "spike": "^2.0.0",
-    "spike-css-standards": "^3.0.0",
+    "spike-css-standards": "^4.0.0",
     "spike-js-standards": "^2.0.2",
     "spike-optimize": "^0.1.2",
     "spike-page-id": "^1.0.0",
