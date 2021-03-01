@@ -17,7 +17,7 @@
     "spike-page-id": "^1.0.0",
     "sugarml": "^0.6.0",
     "sugarss": "^1.0.0",
-    "three": "^0.87.1"
+    "three": "^0.125.0"
   },
   "devDependencies": {
     "ava": "^0.22.0",
